@@ -5,11 +5,27 @@
     <title>vue study</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
-<body>
-    <div id="app">
-        <p>{{ sayHello() }}</p>
-        <p>{{ HowAreYou() }}</p>
-    </div>
+<body >
+<div id="app">
+    {{ number }} <!-- 주사위 수 -->
+    <button @click="rollDice">주사위 던지기</button>
+</div>
 </body>
-<script src="app.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            number: 0 // 주사위의 숫자를 저장할 변수
+        },
+        methods:{
+            // 주사위를 던졌을 때 실행되는 함수
+            rollDice: function () {
+                // 임의의 변수 N을 설정하여 1-6사이의 임의의 숫자를 반환
+                let N = Math.floor(Math.random() * (6)) + 1;
+                // 인스턴스 내부의 값을 불러올 때는 this를 사용
+                this.number = N;
+            }
+        }
+    })
+</script>
 </html>
