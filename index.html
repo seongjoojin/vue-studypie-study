@@ -7,17 +7,15 @@
 </head>
 <body >
 <div id="app">
-    <button v-on:dblclick="doubleClick()">더블클릭</button>
+    {{ count }} <!-- 클릿 횟수 -->
+    <button @click="count ++">클릭</button>
 </div>
 </body>
 <script>
     new Vue({
         el: "#app",
-        data: {},
-        methods:{
-            doubleClick() {
-                console.log('더블클릭')
-            }
+        data: {
+            count: 0 // 클릭 횟수를 저장할 변수
         }
     })
 </script>
