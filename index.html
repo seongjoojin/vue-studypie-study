@@ -7,15 +7,32 @@
 </head>
 <body >
 <div id="app">
-    {{ count }} <!-- 클릿 횟수 -->
+    <p>count: {{ count }}</p>
+    <p>second count: {{ secondCount }}</p>
+    <p>computed: {{ double }}</p>
+    <p>methods: {{ triple() }}</p>
     <button @click="count ++">클릭</button>
+    <button @click="secondCount ++">클릭</button>
 </div>
 </body>
 <script>
     new Vue({
         el: "#app",
         data: {
-            count: 0 // 클릭 횟수를 저장할 변수
+            count: 0,
+            secondCount: 0
+        },
+        computed: {
+            double: function () {
+                console.log('Computed double')
+                return this.count * 2
+            }
+        },
+        methods: {
+            triple: function () {
+                console.log('methods triple')
+                return this.count * 3
+            }
         }
     })
 </script>
