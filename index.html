@@ -7,9 +7,11 @@
 </head>
 <body >
 <div id="app">
-    <h1>장 볼 리스트</h1>
+    <h1>여행지 리스트</h1>
     <ul>
-        <li v-for="(item, i) in list">{{ item }}({{ i }})</li>
+        <li v-for="city in travelList">
+            {{ city.name }} - {{ city.distance }}
+        </li>
     </ul>
 </div>
 </body>
@@ -17,7 +19,14 @@
     new Vue({
         el: "#app",
         data: {
-            list: ['소갈비', '감자', '당근', '무', '깐 밤', '소갈비찜 양념']
+            travelList:[
+                {name: '강릉', distance: '차로 3시간'},
+                {name: '부산', distance: '차로 5시간'},
+                {name: '춘천', distance: '차로 2시간'},
+                {name: '타이베이', distance: '비행기로 3시간'},
+                {name: '마닐라', distance: '비행기로 5시간'},
+                {name: '스페인', distance: '비행기로 17시간'},
+            ]
         }
     })
 </script>
