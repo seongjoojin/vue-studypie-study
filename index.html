@@ -7,15 +7,17 @@
 </head>
 <body >
 <div id="app">
-    <p v-if="dog">반려동물은 강아지지!</p>
-    <p v-show="dog">귀여운 댕댕이</p>
+    <h1>장 볼 리스트</h1>
+    <ul>
+        <li v-for="(item, i) in list">{{ item }}({{ i }})</li>
+    </ul>
 </div>
 </body>
 <script>
     new Vue({
         el: "#app",
         data: {
-            dog: false
+            list: ['소갈비', '감자', '당근', '무', '깐 밤', '소갈비찜 양념']
         }
     })
 </script>
