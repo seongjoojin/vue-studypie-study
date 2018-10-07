@@ -7,32 +7,26 @@
 </head>
 <body >
 <div id="app">
-    <p>count: {{ count }}</p>
-    <p>second count: {{ secondCount }}</p>
-    <p>computed: {{ double }}</p>
-    <p>methods: {{ triple() }}</p>
-    <button @click="count ++">클릭</button>
-    <button @click="secondCount ++">클릭</button>
+    <p v-if="dog">반려동물은 강아지지!</p>
+    <p v-else>무슨소리, 고양이지!</p>
+    <button @click="dog = !dog">반대</button>
+    <template v-if="dog">
+        <p>강아지는 귀여워</p>
+        <p>집에 오면 강아지는 날 반겨줘</p>
+        <p>강아지는 집을 지킬수도 있어</p>
+    </template>
+    <template v-else>
+        <p>고양이도 귀여워</p>
+        <p>고양이는 시크한 매력이 있어</p>
+        <p>고양이에게 간택을 받는다는 것은 영광이야</p>
+    </template>
 </div>
 </body>
 <script>
     new Vue({
         el: "#app",
         data: {
-            count: 0,
-            secondCount: 0
-        },
-        computed: {
-            double: function () {
-                console.log('Computed double')
-                return this.count * 2
-            }
-        },
-        methods: {
-            triple: function () {
-                console.log('methods triple')
-                return this.count * 3
-            }
+            dog: true
         }
     })
 </script>
