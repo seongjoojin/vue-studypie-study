@@ -4,7 +4,27 @@
     <meta charset="UTF-8">
     <title>vue study</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="main.css"></link>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background-color:grey;
+            display:inline-block;
+            margin: 10px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
 </head>
 <body >
 <div id="app">
@@ -17,6 +37,7 @@
     <div
             class="demo"
             :class="color"
+            :style="{height: myHeight}"
     >2</div>
     <div
             class="demo"
@@ -35,11 +56,14 @@
             color:'green'
         },
         computed: {
-            divClasses: function() {
+            divClasses() {
                 return {
                     red: this.attachRed,
                     green: !this.attachRed
                 }
+            },
+            myHeight() {
+                return this.attachRed ? '50px' : '200px'
             }
         }
     })
