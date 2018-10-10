@@ -4,29 +4,43 @@
     <meta charset="UTF-8">
     <title>vue study</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="main.css"></link>
 </head>
 <body >
 <div id="app">
-    <h1>여행지 리스트</h1>
-    <ul>
-        <li v-for="city in travelList">
-            {{ city.name }} - {{ city.distance }}
-        </li>
-    </ul>
+    <div
+            class="demo"
+            @click="attachRed = !attachRed"
+            :class="{red: attachRed, green: !attachRed}"
+            class="demo"
+    >1</div>
+    <div
+            class="demo"
+            :class="color"
+    >2</div>
+    <div
+            class="demo"
+            :class="divClasses"
+    >3</div>
+    <div>
+        2번 상자의 색: <input type="text" v-model="color">
+    </div>
 </div>
 </body>
 <script>
     new Vue({
-        el: "#app",
+        el: '#app',
         data: {
-            travelList:[
-                {name: '강릉', distance: '차로 3시간'},
-                {name: '부산', distance: '차로 5시간'},
-                {name: '춘천', distance: '차로 2시간'},
-                {name: '타이베이', distance: '비행기로 3시간'},
-                {name: '마닐라', distance: '비행기로 5시간'},
-                {name: '스페인', distance: '비행기로 17시간'},
-            ]
+            attachRed: false,
+            color:'green'
+        },
+        computed: {
+            divClasses: function() {
+                return {
+                    red: this.attachRed,
+                    green: !this.attachRed
+                }
+            }
         }
     })
 </script>
