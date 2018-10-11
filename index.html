@@ -5,46 +5,44 @@
     <title>vue study</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <style>
-        .demo {
-            width: 100px;
-            height: 100px;
-            background-color:grey;
-            display:inline-block;
-            margin: 10px;
+        #bag {
+            width: 200px;
+            height: 500px;
+            margin: 0 auto;
+            background: url("bag.png") center no-repeat;
+            background-size: 80%;
         }
-
-        .red {
-            background-color: red;
+        #bag.burst {
+            background: url("bag-burst.png") center no-repeat;
+            background-size: 80%;
         }
-
-        .green {
-            background-color: green;
+        #bag-health {
+            width: 200px;
+            border: 2px solid #000;
+            margin: 0 auto 20px auto;
         }
-
-        .blue {
-            background-color: blue;
+        #bag-health div {
+            height: 20px;
+            background: crimson;
+        }
+        #controls {
+            width: 120px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body >
 <div id="app">
-    <div
-            class="demo"
-            @click="attachRed = !attachRed"
-            :class="{red: attachRed, green: !attachRed}"
-            class="demo"
-    >1</div>
-    <div
-            class="demo"
-            :class="color"
-            :style="{height: myHeight}"
-    >2</div>
-    <div
-            class="demo"
-            :class="divClasses"
-    >3</div>
-    <div>
-        2번 상자의 색: <input type="text" v-model="color">
+    <!--bag image-->
+    <div id="bag" :class="{burst:ended}"></div>
+    <!--bag health-->
+    <div id="bag-health">
+        <div :style="{width:health+'%'}"></div>
+    </div>
+    <!--game controls-->
+    <div id="controls">
+        <button @click="punch" v-show="!ended">Punch</button>
+        <button @click="restart">Restart</button>
     </div>
 </div>
 </body>
@@ -52,20 +50,22 @@
     new Vue({
         el: '#app',
         data: {
-            attachRed: false,
-            color:'green'
+            health: 100,
+            ended: false
         },
-        computed: {
-            divClasses() {
-                return {
-                    red: this.attachRed,
-                    green: !this.attachRed
+        methods: {
+            punch() {
+                this.health -= 10
+                if(this.health<=0) {
+                    this.ended = true
                 }
             },
-            myHeight() {
-                return this.attachRed ? '50px' : '200px'
+            restart() {
+                this.health = 100
+                this.ended = false
             }
-        }
+        },
+        computed: {}
     })
 </script>
 </html>
