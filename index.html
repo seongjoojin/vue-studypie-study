@@ -33,39 +33,23 @@
 </head>
 <body >
 <div id="app">
-    <!--bag image-->
-    <div id="bag" :class="{burst:ended}"></div>
-    <!--bag health-->
-    <div id="bag-health">
-        <div :style="{width:health+'%'}"></div>
-    </div>
-    <!--game controls-->
-    <div id="controls">
-        <button @click="punch" v-show="!ended">Punch</button>
-        <button @click="restart">Restart</button>
-    </div>
+    <h1>{{ count }}</h1><br>
+    <p>{{ text }}</p>
+    <button @click="count --">카운트 감소</button>
 </div>
 </body>
 <script>
     new Vue({
-        el: '#app',
+        el: "#app",
         data: {
-            health: 100,
-            ended: false
+            count: 3,
+            text: '변경 전입니다.'
         },
-        methods: {
-            punch() {
-                this.health -= 10
-                if(this.health<=0) {
-                    this.ended = true
-                }
-            },
-            restart() {
-                this.health = 100
-                this.ended = false
+        watch: {
+            count: function (newVal, oldVal) {
+                this.text = oldVal + '에서 ' + newVal + '로 변경되었습니다.'
             }
-        },
-        computed: {}
+        }
     })
 </script>
 </html>
