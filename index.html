@@ -34,8 +34,6 @@
 <body >
 <div id="app">
     <h1>{{ count }}</h1><br>
-    <h2>computed: {{ calculated }}</h2>
-    <h2>watch: {{ watchedCount }}</h2>
     <button @click="count --">카운트 감소</button>
 </div>
 </body>
@@ -44,16 +42,13 @@
         el: "#app",
         data: {
             count: 3,
-            watchedCount: 9,
-        },
-        computed: {
-            calculated: function () {
-                return this.count * 3
-            }
         },
         watch: {
             count: function (newVal) {
-                this.watchedCount = newVal * 3
+                if(newVal == 0) {
+                    alert('값이 0이 되었습니다.')
+                    this.count = 3
+                }
             }
         }
     })
