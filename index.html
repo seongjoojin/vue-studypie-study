@@ -1,56 +1,127 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <title>vue study</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <style>
-        #bag {
-            width: 200px;
-            height: 500px;
-            margin: 0 auto;
-            background: url("bag.png") center no-repeat;
-            background-size: 80%;
-        }
-        #bag.burst {
-            background: url("bag-burst.png") center no-repeat;
-            background-size: 80%;
-        }
-        #bag-health {
-            width: 200px;
-            border: 2px solid #000;
-            margin: 0 auto 20px auto;
-        }
-        #bag-health div {
-            height: 20px;
-            background: crimson;
-        }
-        #controls {
-            width: 120px;
-            margin: 0 auto;
-        }
-    </style>
+    <title>Rock Scissor Paper</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
-<body >
-<div id="app">
-    <h1>{{ count }}</h1><br>
-    <button @click="count --">카운트 감소</button>
-</div>
+
+<body>
+    <div id="app">
+        <div class="row">
+            <div class="small-5 columns text-center">
+                <img
+                        v-if="myChoice !== null"
+                        :src="`images/${myChoice}.jpg`"
+                        alt=""
+                        class="text-center"
+                >
+                <img
+                        v-else
+                        :src="`images/question.jpg`"
+                        alt=""
+                        class="text-center"
+                >
+                <h1 class="text-center"><strong>YOU</strong></h1>
+            </div>
+            <div class="small-2 columns text-center">
+                <h1 style="font-size:100px;"><strong>{{ count }}</strong></h1>
+            </div>
+            <div class="small-5 columns text-center">
+                <img
+                    v-if="comChoice !== null"
+                    :src="`images/${comChoice}.jpg`"
+                    alt=""
+                    class="text-center"
+                >
+                <img
+                        v-else
+                        :src="`images/question.jpg`"
+                        alt=""
+                        class="text-center"
+                >
+                <h1 class="text-center"><strong>Computer</strong></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns text-center">
+                <div class="battle-wrap">
+                    <img
+                            v-for="life in lifeOfMe"
+                            src="./images/heart.jpg"
+                            class="heart"
+                            alt=""
+                    >
+                    <img
+                        v-for="life in 3 - lifeOfMe"
+                        src="./images/broken-heart.jpg"
+                        class="heart"
+                        alt=""
+                    >
+                </div>
+            </div>
+            <div class="small-6 columns text-center">
+                <div class="battle-wrap">
+                    <img
+                            v-for="life in lifeOfCom"
+                            src="./images/heart.jpg"
+                            class="heart"
+                            alt=""
+                    >
+                    <img
+                            v-for="life in 3 - lifeOfCom"
+                            src="./images/broken-heart.jpg"
+                            class="heart"
+                            alt=""
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns text-center">
+                <div class="row">
+                    <div class="small-8 small-offset-2 columns text-center">
+                        <label class="radio-label">
+                            <input type="radio" v-model="myChoice" value="scissor"> 가위
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" v-model="myChoice" value="rock"> 바위
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" v-model="myChoice" value="paper"> 보
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="text-center">
+                            <button class="start-btn" @click="startGame()">선택 완료!</button>
+                        </div>
+                        <div class="loading"> 기다리는 중...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="small-6 columns text-center">
+                <p>생각 중...</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-12 columns log">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
 </body>
-<script>
-    new Vue({
-        el: "#app",
-        data: {
-            count: 3,
-        },
-        watch: {
-            count: function (newVal) {
-                if(newVal == 0) {
-                    alert('값이 0이 되었습니다.')
-                    this.count = 3
-                }
-            }
-        }
-    })
-</script>
+
 </html>
