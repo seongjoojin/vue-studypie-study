@@ -99,10 +99,10 @@
                 </div>
                 <div class="row">
                     <div class="small-12 columns">
-                        <div class="text-center">
+                        <div class="text-center" v-if="isSelectable">
                             <button class="start-btn" @click="startGame()">선택 완료!</button>
                         </div>
-                        <div class="loading"> 기다리는 중...</div>
+                        <div v-else class="loading"> 기다리는 중...</div>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,8 @@ new Vue({
         count: 3,
         winter: null,
         lifeOfMe: 3,
-        lifeOfCom: 3
+        lifeOfCom: 3,
+        isSelectable: true
     },
     watch: {
         count: function (newVal) {
@@ -25,7 +26,7 @@ new Vue({
                 if (this.myChoice === this.comChoice) this.winter = 'no one'
                 else if (this.myChoice === 'rock' && this.comChoice === 'scissor') this.winter = 'me'
                 else if (this.myChoice === 'scissor' && this.comChoice === 'paper') this.winter = 'me'
-                else if (this.myChoice === 'paper' && this.comChoice === 'scissor') this.winter = 'me'
+                else if (this.myChoice === 'paper' && this.comChoice === 'rock') this.winter = 'me'
                 else if (this.myChoice === 'scissor' && this.comChoice === 'rock') this.winter = 'com'
                 else if (this.myChoice === 'paper' && this.comChoice === 'scissor') this.winter = 'com'
                 else if (this.myChoice === 'rock' && this.comChoice === 'paper') this.winter = 'com'
@@ -37,11 +38,16 @@ new Vue({
                 else if (this.winter === 'com') {
                     this.lifeOfMe--
                 }
+                this.count = 3
+                // 버튼은 다시 보이게 됨
+                this.isSelectable = true
             }
         }
     },
     methods: {
         startGame() {
+            // 버튼이 보이지 않음
+            this.isSelectable = false
             if(this.myChoice === null) {
                 alert("가위 바위 보 중 하나를 선택해주세요.")
             } else {
