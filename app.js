@@ -7,7 +7,8 @@ new Vue({
         winter: null,
         lifeOfMe: 3,
         lifeOfCom: 3,
-        isSelectable: true
+        isSelectable: true,
+        logs: []
     },
     watch: {
         count: function (newVal) {
@@ -41,6 +42,11 @@ new Vue({
                 this.count = 3
                 // 버튼은 다시 보이게 됨
                 this.isSelectable = true
+                let log = {
+                    message: `You ${this.myChoice}, Computer ${this.comChoice}`,
+                    winner: this.winter
+                }
+                this.logs.unshift(log)
             }
         }
     },

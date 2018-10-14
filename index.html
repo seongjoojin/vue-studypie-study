@@ -114,9 +114,12 @@
         <div class="row">
             <div class="small-12 columns log">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li
+                            :class="{'win-log':log.winner==='me','defeat-log':log.winner==='com','draw-log':log.winner==='no one'}"
+                            v-for="log in logs"
+                    >
+                        {{ log.message }}
+                    </li>
                 </ul>
             </div>
         </div>
