@@ -14,14 +14,7 @@
         <div class="row">
             <div class="small-5 columns text-center">
                 <img
-                        v-if="myChoice !== null"
-                        :src="`images/${myChoice}.jpg`"
-                        alt=""
-                        class="text-center"
-                >
-                <img
-                        v-else
-                        :src="`images/question.jpg`"
+                        :src="myChoiceImg"
                         alt=""
                         class="text-center"
                 >
@@ -32,16 +25,9 @@
             </div>
             <div class="small-5 columns text-center">
                 <img
-                    v-if="comChoice !== null"
-                    :src="`images/${comChoice}.jpg`"
+                    :src="comChoiceImg"
                     alt=""
                     class="text-center"
-                >
-                <img
-                        v-else
-                        :src="`images/question.jpg`"
-                        alt=""
-                        class="text-center"
                 >
                 <h1 class="text-center"><strong>Computer</strong></h1>
             </div>
@@ -57,7 +43,7 @@
                             alt=""
                     >
                     <img
-                        v-for="life in 3 - lifeOfMe"
+                        v-for="life in leftLifeOfMe"
                         src="./images/broken-heart.jpg"
                         class="heart"
                         alt=""
@@ -73,7 +59,7 @@
                             alt=""
                     >
                     <img
-                            v-for="life in 3 - lifeOfCom"
+                            v-for="life in leftLifeOfCom"
                             src="./images/broken-heart.jpg"
                             class="heart"
                             alt=""
@@ -86,14 +72,11 @@
             <div class="small-6 columns text-center">
                 <div class="row">
                     <div class="small-8 small-offset-2 columns text-center">
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="scissor"> 가위
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="rock"> 바위
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="paper"> 보
+                        <label
+                                class="radio-label"
+                                v-for="select in selects"
+                        >
+                            <input type="radio" v-model="myChoice" :value="select.value"> {{ select.name }}
                         </label>
                     </div>
                 </div>
@@ -116,7 +99,8 @@
                 <ul>
                     <li
                             :class="{'win-log':log.winner==='me','defeat-log':log.winner==='com','draw-log':log.winner==='no one'}"
-                            v-for="log in logs"
+                            v-for="(log,index) in logs"
+                            :key="index"
                     >
                         {{ log.message }}
                     </li>
