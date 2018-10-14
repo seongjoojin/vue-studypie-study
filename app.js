@@ -48,15 +48,43 @@ new Vue({
                 }
                 this.logs.unshift(log)
             }
+        },
+        lifeOfMe: function (newVal) {
+            if(newVal === 0) {
+                setTimeout(()=>{
+                    confirm("안타깝네요. 당신이 패배하였습니다.")
+                    this.lifeOfMe = 3
+                    this.lifeOfCom = 3
+                    this.myChoice = null
+                    this.comChoice = null
+                    this.winter = null
+                    this.count = 3
+                    this.logs = []
+                }, 500)
+            }
+        },
+        lifeOfCom: function (newVal) {
+            if(newVal === 0) {
+                setTimeout(()=>{
+                    confirm("축하드립니다. 당신이 승리하였습니다.")
+                    this.lifeOfMe = 3
+                    this.lifeOfCom = 3
+                    this.myChoice = null
+                    this.comChoice = null
+                    this.winter = null
+                    this.count = 3
+                    this.logs = []
+                }, 500)
+            }
         }
     },
     methods: {
         startGame() {
             // 버튼이 보이지 않음
-            this.isSelectable = false
             if(this.myChoice === null) {
                 alert("가위 바위 보 중 하나를 선택해주세요.")
             } else {
+                this.isSelectable = false
                 let countDown = setInterval(()=>{
                     this.count--
                     if(this.count===0) {
