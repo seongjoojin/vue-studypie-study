@@ -8,21 +8,31 @@
 <div id="app">
     {{ title }}
 </div>
+
 <div id="app2">
     {{ title }}
+    <button @click="onChange">변경</button>
 </div>
 <script>
-    new Vue({
+    var createdData = {
+        title: '첫 인스턴스'
+    }
+
+    var vm1 = new Vue({ // vue model 통용되는 약어, 아무 변수나 사용해도됨
         el: '#app',
-        data: {
-            title: '첫 인스턴스'
-        }
+        data: createdData
     })
 
-    new Vue({
+
+    var vm2 = new Vue({
         el: '#app2',
         data: {
             title: '두번째 인스턴스'
+        },
+        methods:{
+            onChange: function () {
+                vm1.title = '변경됨'
+            }
         }
     })
 </script>
