@@ -1,114 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rock Scissor Paper</title>
+    <title>vue training</title>
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <link rel="stylesheet" href="css/app.css">
 </head>
+<div id="app">
+    {{ title }}
+</div>
+<div id="app2">
+    {{ title }}
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '첫 인스턴스'
+        }
+    })
 
-<body>
-    <div id="app">
-        <div class="row">
-            <div class="small-5 columns text-center">
-                <img
-                        :src="myChoiceImg"
-                        alt=""
-                        class="text-center"
-                >
-                <h1 class="text-center"><strong>YOU</strong></h1>
-            </div>
-            <div class="small-2 columns text-center">
-                <h1 style="font-size:100px;"><strong>{{ count }}</strong></h1>
-            </div>
-            <div class="small-5 columns text-center">
-                <img
-                    :src="comChoiceImg"
-                    alt=""
-                    class="text-center"
-                >
-                <h1 class="text-center"><strong>Computer</strong></h1>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-6 columns text-center">
-                <div class="battle-wrap">
-                    <img
-                            v-for="life in lifeOfMe"
-                            src="./images/heart.jpg"
-                            class="heart"
-                            alt=""
-                    >
-                    <img
-                        v-for="life in leftLifeOfMe"
-                        src="./images/broken-heart.jpg"
-                        class="heart"
-                        alt=""
-                    >
-                </div>
-            </div>
-            <div class="small-6 columns text-center">
-                <div class="battle-wrap">
-                    <img
-                            v-for="life in lifeOfCom"
-                            src="./images/heart.jpg"
-                            class="heart"
-                            alt=""
-                    >
-                    <img
-                            v-for="life in leftLifeOfCom"
-                            src="./images/broken-heart.jpg"
-                            class="heart"
-                            alt=""
-                    >
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-6 columns text-center">
-                <div class="row">
-                    <div class="small-8 small-offset-2 columns text-center">
-                        <label
-                                class="radio-label"
-                                v-for="select in selects"
-                        >
-                            <input type="radio" v-model="myChoice" :value="select.value"> {{ select.name }}
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="small-12 columns">
-                        <div class="text-center" v-if="isSelectable">
-                            <button class="start-btn" @click="startGame()">선택 완료!</button>
-                        </div>
-                        <div v-else class="loading"> 기다리는 중...</div>
-                    </div>
-                </div>
-            </div>
-            <div class="small-6 columns text-center">
-                <p>생각 중...</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-12 columns log">
-                <ul>
-                    <li
-                            :class="{'win-log':log.winner==='me','defeat-log':log.winner==='com','draw-log':log.winner==='no one'}"
-                            v-for="(log,index) in logs"
-                            :key="index"
-                    >
-                        {{ log.message }}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <script src="app.js"></script>
-</body>
-
+    new Vue({
+        el: '#app2',
+        data: {
+            title: '두번째 인스턴스'
+        }
+    })
+</script>
 </html>
