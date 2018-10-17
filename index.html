@@ -6,34 +6,22 @@
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
 </head>
 <div id="app">
-    {{ title }}
-</div>
-
-<div id="app2">
-    {{ title }}
-    <button @click="onChange">변경</button>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
 </div>
 <script>
-    var createdData = {
-        title: '첫 인스턴스'
-    }
-
-    var vm1 = new Vue({ // vue model 통용되는 약어, 아무 변수나 사용해도됨
-        el: '#app',
-        data: createdData
-    })
-
-
-    var vm2 = new Vue({
-        el: '#app2',
-        data: {
-            title: '두번째 인스턴스'
-        },
-        methods:{
-            onChange: function () {
-                vm1.title = '변경됨'
+    Vue.component('hello',{
+        template: '<h1>{{ title }}</h1>',
+        data: function() {
+            return {
+                title: '안녕하세요!!'
             }
         }
+    })
+
+    new Vue({
+        el:"#app"
     })
 </script>
 </html>
