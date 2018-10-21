@@ -1,25 +1,19 @@
 <template>
-  <div>
-    <h1> {{ title }} </h1>
-    <p>{{ count }}</p>
-    <button @click="count++">추가</button>
-    <HomnComponent />
-    <AppStatus />
-  </div>
+  <v-container>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <User></User>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import HomnComponent from "./Home"
+import User from './components/User.vue'
 
 export default {
-    components: {
-        HomnComponent
-    },
-    data() {
-        return {
-            title: "안녕하세요",
-            count: 1
-        }
-    }
+  components: {
+    User
+  }  
 }
 </script>
