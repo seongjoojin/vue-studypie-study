@@ -1,4 +1,12 @@
 export const dateFormat = {
+    created() {
+        console.log('믹스인')
+    },
+    data() {
+        return {
+            mixinData: '나는 믹스인이오!'
+        }
+    },
     methods: {
         getDateAndTime(date) {
             if(date!==null) {

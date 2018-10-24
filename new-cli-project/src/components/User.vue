@@ -3,6 +3,7 @@
     <h1>User 컴포넌트</h1>
     <p>이름: 뷰제이에스</p>
     <p>{{ getDateAndTime(createAt) }}</p>
+    {{ helloToMixin }}
     <hr>
     <v-layout row wrap>
       <v-flex xs12 sm6>
@@ -45,8 +46,14 @@
             createAt: null
         }
       },
+      computed: {
+        helloToMixin() {
+            return `${this.mixinData} 안녕하시오!`
+        }
+      },
       created() {
         this.createAt = new Date()
+        console.log('유저 컴포넌트')
       },
       methods: {
         parents(user) {
