@@ -30,7 +30,7 @@
         <v-list-tile>
             <v-list-tile-content>수정날짜:</v-list-tile-content>
             <v-list-tile-content class="align-end">
-                {{ editeDate }}
+                {{ getDateAndTime(editeDate) }}
             </v-list-tile-content>
         </v-list-tile>
     </v-list>
@@ -38,6 +38,8 @@
 </template>
 <script>
   import { eventBus } from "../main"
+  import { dateFormat } from '../mixins/dateFormat'
+
   export default {
       data() {
           return {
@@ -54,6 +56,19 @@
           eventBus.$on('userWasEdited', date => {
               this.editeDate = date
           })
-      }
+      },
+      methods: {
+          // getDateAndTime(date) {
+          //     if(date!==null) {
+          //         let hour = date.getHours()
+          //         let minutes = date.getMinutes()
+          //         let fullDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+          //         return `${fullDate} ${hour}:${minutes}`
+          //     } else {
+          //         return null
+          //     }
+          // }
+      },
+      mixins: [dateFormat]
   }
 </script>
