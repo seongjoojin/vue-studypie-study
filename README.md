@@ -80,3 +80,10 @@ vm.$nextTick 를 사용하면 전체가 렌더링된 상태를 보장할 수 있
  해체(뷰 인스턴스 제거)된 후에 호출됨
  
  Vue 인스턴스의 모든 디렉티브가 바인딩 해제 되고 모든 이벤트 리스너가 제거되며 모든 하위 Vue 인스턴스도 삭제됨
+ 
+ # vue router - history mode? hash mode?
+ 
+ vue router의 기본이 hash mode -> 주소창에 hash가 들어감
+ 
+ history mode는 우리가 익숙하게 보는 url로 보여줌
+ 
