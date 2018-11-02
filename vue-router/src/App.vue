@@ -6,7 +6,7 @@
       app
     >
       <v-list dense>
-        <v-list-tile>
+        <v-list-tile router :to="{name: 'home'}" exact>
           <v-list-tile-action>
             <i class="fas fa-home"></i>
           </v-list-tile-action>
@@ -14,7 +14,7 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile>
+        <v-list-tile  @router :to="{name: 'about'}" exact>
           <v-list-tile-action>
             <i class="fas fa-user"></i>
           </v-list-tile-action>
@@ -44,6 +44,11 @@ export default {
   }),
   props: {
     source: String
+  },
+  methods: {
+      goHome() {
+          alert("click")
+      }
   }
 }
 </script>
