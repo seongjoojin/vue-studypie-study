@@ -3,7 +3,7 @@
     <h1>All Users</h1>
     <v-list two-line>
       <v-list-tile 
-        v-for="(user, index) in allUsers"
+        v-for="(user, index) in $store.state.allUsers"
         :key="index"
         avatar
       >
@@ -27,16 +27,12 @@ import { EventBus } from '@/main.js'
   export default {
     data() {
       return {
-        allUsers:[
-          {userId: 'hoza123', password: '123', name: 'Hoza', address: 'Seoul', src:'https://goo.gl/oqLfJR'},
-          {userId: 'max123', password: '456', name: 'Max', address: 'Berlin', src:'https://goo.gl/Ksk9B9'},
-          {userId: 'lego123', password: '789', name: 'Lego', address: 'Busan', src:'https://goo.gl/x7SpCD'}
-        ]
+
       }
     },
     mounted() {
       EventBus.$on('signUp', users => {
-        this.allUsers.push(users)
+        this.$store.state.allUsers.push(users)
       })
     }
   }
