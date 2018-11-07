@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>All Users</h1>
+    <h1>All Users({{ $store.getters.allUsersCount }})</h1>
     <v-list two-line>
       <v-list-tile 
         v-for="(user, index) in $store.state.allUsers"
