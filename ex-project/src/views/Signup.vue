@@ -2,39 +2,43 @@
   <v-container fill-height style="max-width:450px;">
     <v-layout align-center row wrap>
       <v-flex xs12>
-        <v-alert :value="isLoginError" type="error" class="mb-3">
-          아이디와 비밀번호를 확인해주세요.
+        <v-alert :value="emailError" type="error" class="mb-3">
+          이미 존재하는 이메일입니다.
         </v-alert>
-        <v-alert :value="isLogin" type="success" class="mb-3">
-          로그인이 완료되었습니다.
+        <v-alert :value="signUpError" type="error" class="mb-3">
+          이름, 이메일, 비밀번호를 입력해주세요.
         </v-alert>
         <v-card>
           <v-toolbar flat>
-            <v-toolbar-title>로그인</v-toolbar-title>
+            <v-toolbar-title>회원가입</v-toolbar-title>
           </v-toolbar>
           <div class="pa-3">
             <v-text-field
+              v-model="name"
+              label="이름을 입력해주세요."
+            ></v-text-field>
+            <v-text-field
               v-model="email"
-              label="이메일을 입력하세요."
+              label="이메일을 입력해주세요."
             ></v-text-field>
             <v-text-field
               v-model="password"
-              type="password"
-              label="패스워드를 입력하세요."
+              label="비밀번호를 입력해주세요."
             ></v-text-field>
             <v-btn
-              color="primary"
+              color="secondary"
               large
               block
               depressed
               @click="
-                login({
+                singUp({
+                  name,
                   email,
                   password
                 });
               "
             >
-              로그인
+              회원가입
             </v-btn>
           </div>
         </v-card>
@@ -47,18 +51,22 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  name: "Login",
+  name: "Signup",
   data() {
     return {
+      name: null,
       email: null,
       password: null
     };
   },
+  created() {
+    this.initSingUp();
+  },
   computed: {
-    ...mapState(["isLogin", "isLoginError"])
+    ...mapState(["signUpError", "emailError"])
   },
   methods: {
-    ...mapActions(["login"])
+    ...mapActions(["singUp", "initSingUp"])
   }
 };
 </script>

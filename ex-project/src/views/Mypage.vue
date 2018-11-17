@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<h1>{{ userInfo.name }}님 환영합니다</h1>
-	</div>
+  <div>
+    <h1>{{ userInfo.name }}님 환영합니다</h1>
+  </div>
 </template>
 
 <script>
@@ -15,5 +15,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
