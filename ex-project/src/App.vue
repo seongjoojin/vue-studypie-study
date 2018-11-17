@@ -37,7 +37,24 @@
 			<v-toolbar-title>Application</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-toolbar-items class="hidden-sm-and-down">
-				<v-btn flat v-if="isLogin">웰컴</v-btn>
+				<v-menu offset-y v-if="isLogin">
+					<v-btn
+									slot="activator"
+									dark
+									flat
+									icon
+					>
+						<v-icon>more_vert</v-icon>
+					</v-btn>
+					<v-list>
+						<v-list-tile router :to="{name:'mypage'}">
+							<v-list-tile-title>마이페이지</v-list-tile-title>
+						</v-list-tile>
+						<v-list-tile @click="$store.dispatch('logout')">
+							<v-list-tile-title>로그아웃</v-list-tile-title>
+						</v-list-tile>
+					</v-list>
+				</v-menu>
 				<v-btn flat v-else router :to="{name: 'login'}">로그인</v-btn>
 			</v-toolbar-items>
 		</v-toolbar>
@@ -63,5 +80,8 @@ export default {
   props: {
     source: String
   }
+	// methods: {
+	// 		...mapActions(["logout"])
+	// }
 };
 </script>
