@@ -6,7 +6,7 @@
 						app
 		>
 			<v-list dense>
-				<v-list-tile router :to="{name: 'home'}">
+				<v-list-tile router :to="{name: 'home'}" exact>
 					<v-list-tile-action>
 						<v-icon>home</v-icon>
 					</v-list-tile-action>
@@ -14,12 +14,20 @@
 						<v-list-tile-title>Home</v-list-tile-title>
 					</v-list-tile-content>
 				</v-list-tile>
-				<v-list-tile router :to="{name: 'login'}">
+				<v-list-tile router :to="{name: 'login'}" exact>
+				<v-list-tile-action>
+					<v-icon>contact_mail</v-icon>
+				</v-list-tile-action>
+				<v-list-tile-content>
+					<v-list-tile-title>로그인</v-list-tile-title>
+				</v-list-tile-content>
+			</v-list-tile>
+				<v-list-tile router :to="{name: 'mypage'}" exact>
 					<v-list-tile-action>
 						<v-icon>contact_mail</v-icon>
 					</v-list-tile-action>
 					<v-list-tile-content>
-						<v-list-tile-title>로그인</v-list-tile-title>
+						<v-list-tile-title>마이페이지</v-list-tile-title>
 					</v-list-tile-content>
 				</v-list-tile>
 			</v-list>
@@ -49,9 +57,9 @@ export default {
   data: () => ({
     drawer: null
   }),
-	computed: {
-		...mapState(["isLogin", "isLoginError"])
-	},
+  computed: {
+    ...mapState(["isLogin", "isLoginError"])
+  },
   props: {
     source: String
   }
