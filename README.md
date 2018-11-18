@@ -87,3 +87,7 @@ vm.$nextTick 를 사용하면 전체가 렌더링된 상태를 보장할 수 있
  
  history mode는 우리가 익숙하게 보는 url로 보여줌
  
+ # Fake Api 서버와 Postman 소개
+ 
+ - https://reqres.in/
+ - https://www.getpostman.com/
