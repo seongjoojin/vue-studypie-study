@@ -50,41 +50,24 @@ export default new Vuex.Store({
   },
   actions: {
     // 로그인 시도
-    login({ commit }, loginObj) {
-			axios
-					.post("https://reqres.in/api/login",
-						loginObj	// 파라메타(body)
-					)
-					.then(res => {
-						// 성공시 token: 블라블라(실제로는 user_id를 받아옴.)
-						// 토큰을 헤더에 포함시켜 유저정보를 요청
-						let token =  res.data.token
-						let config = {
-							headers: {
-								"access-token": token
-							}
-						}
-						axios
-								.get("https://reqres.in/api/users/2",
-										config
-								)
-								.then(response => {
-									console.log(response)
-									let userInfo = {
-										id: response.data.data.id,
-										first_name: response.data.data.first_name,
-										last_name: response.data.data.last_name,
-										avatar: response.data.data.avatar
-									}
-									commit('loginSuccess', userInfo)
-								})
-								.catch(() => {
-									alert('이메일과 비밀번호를 확인하세요.')
-								})
-					})
-					.catch(() => {
-						alert('이메일과 비밀번호를 확인하세요.')
-					});
+    login({ dispatch }, loginObj) {
+      // 로그인 -> 토큰 반환
+      axios
+        .post(
+          "https://reqres.in/api/login",
+          loginObj // 파라메타(body)
+        )
+        .then(res => {
+          // 성공시 token: 블라블라(실제로는 user_id를 받아옴.)
+          // 토큰을 헤더에 포함시켜 유저정보를 요청
+          let token = res.data.token;
+          // 토큰을 로컬스토리지에 저장
+          localStorage.setItem("access_token", token);
+          dispatch("getMemberInfo");
+        })
+        .catch(() => {
+          alert("이메일과 비밀번호를 확인하세요.");
+        });
       // let selectedUser = null;
       // state.allUsers.forEach(user => {
       //   if (user.email === loginObj.email) selectedUser = user;
@@ -127,6 +110,32 @@ export default new Vuex.Store({
     },
     initSingUp({ commit }) {
       commit("initSingUp");
+    },
+    getMemberInfo({ commit }) {
+      // 로컬스토리지에 저장되어 있는 토큰을 불러온다.
+      let token = localStorage.getItem("access_token");
+      let config = {
+        headers: {
+          "access-token": token
+        }
+      };
+      // 토큰 -> 멤버의 정보를 반환
+      // 새로 고침 -> 토큰만 가지고 멤버정보를 요청
+      axios
+        .get("https://reqres.in/api/users/2", config)
+        .then(response => {
+          console.log(response);
+          let userInfo = {
+            id: response.data.data.id,
+            first_name: response.data.data.first_name,
+            last_name: response.data.data.last_name,
+            avatar: response.data.data.avatar
+          };
+          commit("loginSuccess", userInfo);
+        })
+        .catch(() => {
+          alert("이메일과 비밀번호를 확인하세요.");
+        });
     }
   }
 });

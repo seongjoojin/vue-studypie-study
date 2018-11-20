@@ -36,8 +36,8 @@
             >
               로그인
             </v-btn>
-            <!--<v-btn @click="test">테스트</v-btn>-->
-            <!--<v-btn @click="postTest">포스트 테스트</v-btn>-->
+            <!-- <v-btn @click="test">테스트</v-btn> -->
+            <!-- <v-btn @click="postTest">포스트 테스트</v-btn> -->
           </div>
         </v-card>
       </v-flex>
@@ -80,8 +80,8 @@ export default {
     // postTest() {
     //   axios
     //     .post("https://reqres.in/api/register", {
-		// 			"email": "sydney@fife",
-		// 			"password": "pistol"
+    // 			"email": "sydney@fife",
+    // 			"password": "pistol"
     //     })
     //     .then(res => {
     //       console.log(res);
