@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "ex-project/package.json",
+        "new-cli-project/package.json",
+        "vue-router/package.json",
+        "vuex/package.json"
+      ]
+    }
+  }
+}
