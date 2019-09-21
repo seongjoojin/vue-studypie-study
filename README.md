@@ -1,4 +1,7 @@
 # vue-studypie-study
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/seongjoojin/vue-studypie-study.svg)](https://greenkeeper.io/)
+
 studypie에서 8주동안 진행되었던 vue study 내용을 정리한 곳입니다.
 
 ## computed vs watch
